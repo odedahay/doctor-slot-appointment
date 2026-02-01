@@ -91,3 +91,36 @@ input:focus{
 .ant-form-item{
   margin-bottom: 10px;
 }
+
+.header{
+  background: #fff;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title{
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+.header-title-icon{
+  font-size: 22px;
+  line-height: 0;
+}
+
+.header-menu{
+  font-size: 1rem;
+  display: flex;
+  gap: 15px;
+}
+.header-menu-item a{
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-user-display{
+  cursor: pointer;
+}

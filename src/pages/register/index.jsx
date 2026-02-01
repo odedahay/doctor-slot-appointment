@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { CreateUser } from '../../apicalls/user';
@@ -9,21 +9,27 @@ export default function Register() {
     const onSubmit = async (value) => {
 
         try {
-           
+
             const response = await CreateUser(value);
-           
+
             if (response.success) {
                 message.success(response.message);
+                navigate('/login');
+
             } else {
                 throw new Error(response.message)
             }
 
-            navigate('/login');
 
         } catch (error) {
             message.error("Oops! Please check your submission");
         }
     }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (user) navigate("/");
+    }, []);
     return (
         <div className='flex justify-center items-center h-screen'>
             <Form

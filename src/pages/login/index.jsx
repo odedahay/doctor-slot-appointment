@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -15,8 +15,20 @@ export default function Login() {
             const response = await LoginUser(value);
 
             if (response.success) {
+                const authUser = response.data.user;
+                const userToStore = {
+                    name: authUser.displayName || "",
+                    email: authUser.email,
+                    uid: authUser.uid,
+                }
+
+                console.log("userToStore",userToStore)
+
+                localStorage.setItem('user', JSON.stringify(userToStore));
                 message.success(response.message);
+
                 navigate('/');
+                
             } else {
                 throw new Error(response.message)
             }
@@ -24,6 +36,11 @@ export default function Login() {
             message.error("Crap! Something wrong to Email or Password");
         }
     }
+
+    useEffect( ()=>{
+        const user = JSON.parse(localStorage.getItem('user'));
+         if(user) navigate("/");
+    }, []);
 
     return (
         <div className='flex justify-center items-center h-screen'>

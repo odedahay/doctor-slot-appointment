@@ -1,6 +1,7 @@
 import firestoreDB from "../firebaseConfig";
 import { getAuth, createUserWithEmailAndPassword, updateProfile, signInWithEmailAndPassword } from "firebase/auth";
 import { collection, getDocs, query, where, doc, setDoc, serverTimestamp } from "firebase/firestore";
+import { data } from "react-router-dom";
 // import crypto
 
 export const CreateUser = async (payload) => {
@@ -50,11 +51,12 @@ export const LoginUser = async(payload)=>{
     try {
 
         const auth = getAuth();
-        await signInWithEmailAndPassword(auth, payload.email, payload.password)
+        const user = await signInWithEmailAndPassword(auth, payload.email, payload.password)
         
         return{
             success: true,
-            message: "Successful login"
+            message: "Successful login",
+            data: user
         }
         
     } catch (error) {

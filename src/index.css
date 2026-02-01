@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body, html{
+  background-color: #e4e4e4;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #333;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+}
+
+h1{
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.small-font{
+  font-size: .75rem;
+}
+
+.bg-white{
+  background-color: #fff;
+}
+
+
+.flex{
+  display: flex;
+}
+
+.flex-column{
+  flex-direction: column;
+}
+
+.justify-center{
+  justify-content: center;
+}
+
+.items-center{
+  align-items: center;
+}
+
+.h-screen{
+  height: 90vh;
+}
+
+.w-400{
+  width: 400px;
+}
+.p-1{
+padding: 10px;
+}
+
+.p-2{
+  padding: 20px;
+}
+.p-3{
+  padding: 30px
+}
+
+.mb-1{
+  margin-bottom: 10px;
+}
+.mb-2{
+  margin-bottom: 20px;
+}
+.mt-2{
+margin-top: 20px;
+}
+
+input{
+  height: 40px!important;
+  padding-left: 5px;
+  border: 1px solid #909090;
+  border-radius: 6px;
+  width: 100%;
+} 
+
+input:focus{
+  outline: none;
+  border: 1px solid #494949;
+}
+
+.ant-form-item{
+  margin-bottom: 10px;
+}

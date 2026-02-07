@@ -2,16 +2,20 @@ import React, {useEffect} from 'react';
 import { Button, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import { CreateUser } from '../../apicalls/user';
+import { useDispatch } from 'react-redux';
+import { ShowLoader } from '../../redux/loaderSlice';
 
 export default function Register() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
 
     const onSubmit = async (value) => {
 
         try {
-
+            dispatch(ShowLoader(true));
             const response = await CreateUser(value);
-
+            dispatch(ShowLoader(false));
             if (response.success) {
                 message.success(response.message);
                 navigate('/login');
@@ -22,6 +26,7 @@ export default function Register() {
 
 
         } catch (error) {
+            dispatch(ShowLoader(false));
             message.error("Oops! Please check your submission");
         }
     }

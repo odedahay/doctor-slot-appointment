@@ -3,16 +3,19 @@ import { Button, Form, Input, message } from 'antd';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { LoginUser } from '../../apicalls/user';
+import { useDispatch } from 'react-redux';
+import { ShowLoader } from '../../redux/loaderSlice';
 
 
 export default function Login() {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
     const onSubmit = async (value) => {
 
         try {
-
+            dispatch(ShowLoader(true))
             const response = await LoginUser(value);
+            dispatch(ShowLoader(false));
 
             if (response.success) {
                 const authUser = response.data.user;
@@ -22,24 +25,23 @@ export default function Login() {
                     uid: authUser.uid,
                 }
 
-                console.log("userToStore",userToStore)
-
                 localStorage.setItem('user', JSON.stringify(userToStore));
                 message.success(response.message);
 
                 navigate('/');
-                
+
             } else {
                 throw new Error(response.message)
             }
         } catch (error) {
+            dispatch(ShowLoader(false));
             message.error("Crap! Something wrong to Email or Password");
         }
     }
 
-    useEffect( ()=>{
+    useEffect(() => {
         const user = JSON.parse(localStorage.getItem('user'));
-         if(user) navigate("/");
+        if (user) navigate("/");
     }, []);
 
     return (

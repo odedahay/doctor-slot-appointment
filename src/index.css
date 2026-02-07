@@ -30,6 +30,19 @@ h1{
   background-color: #fff;
 }
 
+.spinner-parent{
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 999;
+}
+
+.ant-spin-dot-spin{
+  color: #fff;
+}
 
 .flex{
   display: flex;
@@ -100,11 +113,12 @@ input:focus{
   align-items: center;
 }
 
-.header-title{
+.header-logo{
   font-size: 1.1rem;
   text-transform: uppercase;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .header-title-icon{
   font-size: 22px;
